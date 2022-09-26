@@ -1,14 +1,16 @@
 ﻿
 public class ProgramEvent
 {
-     string Title;
+    string Title;
 
-    List<Event> Events;
+    List<Event> events;
+
+    List<Event> Events { get => events; }
 
     public ProgramEvent(string title)
     {
         Title = title;
-        Events = new List<Event>();
+        events = new List<Event>();
     }
 
     public void EventAdder(Event newEvent)
@@ -50,7 +52,7 @@ public class ProgramEvent
 
     public string ProgramPrint()
     {
-        string programPrint = $"Eventi presenti nel programma: {Title} : \n";
+        string programPrint = $"{Title} : \n";
 
         foreach (Event e in Events)
         {

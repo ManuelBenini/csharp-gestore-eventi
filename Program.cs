@@ -1,62 +1,60 @@
 ﻿
-//Console.Write("Salve! Inserisci il nome dell'evento: ");
-//string eventTitle = Console.ReadLine();
+Console.Write("Inserisci il nome del tuo programma Eventi: ");
+ProgramEvent newProgram = new ProgramEvent(Console.ReadLine());
 
-//Console.Write("Inserisci data dell'evento (gg/mm/yyyy): ");
-//DateTime eventDate = Convert.ToDateTime(Console.ReadLine());
+Console.Write("Indica il numero di eventi da inserire: ");
+int numberOfEventsToAdd = Convert.ToInt32(Console.ReadLine());
 
-//Console.Write("Inserisci numero di posti totali: ");
-//int eventCapacity = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine();
+Console.WriteLine();
+for (int i = 1; i <= numberOfEventsToAdd; i++)
+{
+    bool errors = false;
 
-//Event newEvent = new Event(eventTitle, eventDate, eventCapacity);
+    while (!errors){
 
-//Console.Write("Quanti posti desideri prenotare? ");
-//newEvent.BookSeats(Convert.ToInt32(Console.ReadLine()));
+        errors = true;
 
-//Console.WriteLine(newEvent.BookedSeats);
+        Console.Write($"Inserisci il nome del {i}°  evento: ");
+        string eventTitle = Console.ReadLine();
 
-//ProgramEvent newProgram = new ProgramEvent("Giochi d'autunno");
+        Console.Write("Inserisci data dell'evento (gg/mm/yyyy): ");
+        DateTime eventDate = Convert.ToDateTime(Console.ReadLine());
 
-//newProgram.EventAdder(new Event("Rockstar", new DateTime(2023, 3, 1, 7, 0, 0), 150));
+        Console.Write("Inserisci numero di posti totali: ");
+        int eventCapacity = Convert.ToInt32(Console.ReadLine());
 
-//newProgram.EventAdder(new Event("Barbablù", new DateTime(2023, 3, 1, 7, 0, 0), 150));
+        try
+        {
+            Event newEvent = new Event(eventTitle, eventDate, eventCapacity);
+            newProgram.EventAdder(newEvent);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+            errors = false;
+        }
+    }
+    
 
-//newProgram.EventPrintOnDate(new DateTime(2023, 3, 1, 7, 0, 0));
+    Console.WriteLine();
+    Console.WriteLine();
+    //Console.Write("Quanti posti desideri prenotare? ");
+    //newEvent.BookSeats(Convert.ToInt32(Console.ReadLine()));
 
-//newProgram.EventsPrint();
+    //Console.WriteLine(newEvent.BookedSeats);
+}
 
-//Console.WriteLine(newProgram.NumberOfEvents());
+Console.WriteLine($"Il numero di eventi nel programma è {newProgram.NumberOfEvents()}");
 
-//newProgram.ProgramPrint();
+Console.WriteLine("Ecco il tuo programma eventi:");
 
-//newProgram.EventsClear();
+Console.WriteLine(newProgram.ProgramPrint()); 
 
-//Console.WriteLine(newProgram.NumberOfEvents());
+Console.Write("Inserisci una data per sapere che eventi ci saranno (gg/mm/yyyy): ");
 
+List<Event> list = newProgram.EventPrintOnDate(Console.ReadLine());
 
-
-ProgramEvent newProgram = new ProgramEvent("Giochi d'autunno");
-
-newProgram.EventAdder(new Event("Rockstar", new DateTime(2023, 3, 11, 7, 0, 0), 150));
-newProgram.EventAdder(new Event("Barbablù", new DateTime(2023, 3, 12, 7, 0, 0), 150));
-
-List<Event> list = newProgram.EventPrintOnDate("11/03/2023");
-
-Console.WriteLine("Lista eventi nella data scelta: ");
 ProgramEvent.EventsPrint(list);
 
-Console.WriteLine();
-
-Console.WriteLine("Numero di eventi nel programma");
-Console.WriteLine(newProgram.NumberOfEvents());
-
-Console.WriteLine();
-Console.WriteLine(newProgram.ProgramPrint());
-
-Console.WriteLine();
-Console.WriteLine("Svuotata lista eventi");
 newProgram.EventsClear();
-
-Console.WriteLine();
-Console.WriteLine("Numero di eventi nel programma");
-Console.WriteLine(newProgram.NumberOfEvents());
