@@ -15,20 +15,48 @@
 
 //Console.WriteLine(newEvent.BookedSeats);
 
-ProgramEvents newProgram = new ProgramEvents("Giochi d'autunno");
+//ProgramEvent newProgram = new ProgramEvent("Giochi d'autunno");
 
-newProgram.EventAdder(new Event("Rockstar", new DateTime(2023, 3, 1, 7, 0, 0), 150));
+//newProgram.EventAdder(new Event("Rockstar", new DateTime(2023, 3, 1, 7, 0, 0), 150));
 
-newProgram.EventAdder(new Event("Barbablù", new DateTime(2023, 3, 1, 7, 0, 0), 150));
+//newProgram.EventAdder(new Event("Barbablù", new DateTime(2023, 3, 1, 7, 0, 0), 150));
 
-newProgram.EventPrintOnDate(new DateTime(2023, 3, 1, 7, 0, 0));
+//newProgram.EventPrintOnDate(new DateTime(2023, 3, 1, 7, 0, 0));
 
-newProgram.EventsPrint();
+//newProgram.EventsPrint();
 
+//Console.WriteLine(newProgram.NumberOfEvents());
+
+//newProgram.ProgramPrint();
+
+//newProgram.EventsClear();
+
+//Console.WriteLine(newProgram.NumberOfEvents());
+
+
+
+ProgramEvent newProgram = new ProgramEvent("Giochi d'autunno");
+
+newProgram.EventAdder(new Event("Rockstar", new DateTime(2023, 3, 11, 7, 0, 0), 150));
+newProgram.EventAdder(new Event("Barbablù", new DateTime(2023, 3, 12, 7, 0, 0), 150));
+
+List<Event> list = newProgram.EventPrintOnDate("11/03/2023");
+
+Console.WriteLine("Lista eventi nella data scelta: ");
+ProgramEvent.EventsPrint(list);
+
+Console.WriteLine();
+
+Console.WriteLine("Numero di eventi nel programma");
 Console.WriteLine(newProgram.NumberOfEvents());
 
-newProgram.ProgramPrint();
+Console.WriteLine();
+Console.WriteLine(newProgram.ProgramPrint());
 
+Console.WriteLine();
+Console.WriteLine("Svuotata lista eventi");
 newProgram.EventsClear();
 
+Console.WriteLine();
+Console.WriteLine("Numero di eventi nel programma");
 Console.WriteLine(newProgram.NumberOfEvents());

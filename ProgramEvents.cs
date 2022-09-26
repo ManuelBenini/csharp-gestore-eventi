@@ -1,11 +1,11 @@
 ﻿
-public class ProgramEvents
+public class ProgramEvent
 {
-    public string Title { get; set; }
+     string Title;
 
-    public List<Event> Events;
+    List<Event> Events;
 
-    public ProgramEvents(string title)
+    public ProgramEvent(string title)
     {
         Title = title;
         Events = new List<Event>();
@@ -15,29 +15,24 @@ public class ProgramEvents
     {
         Events.Add(newEvent);
     }
-    public void EventPrintOnDate(DateTime date)
+
+    public List<Event> EventPrintOnDate(string date)
     {
-        bool eventsExistOnDate = false;
+        List<Event> events = new List<Event>();
 
         foreach (Event e in Events)
         {
-            if(e.Date == date)
+            if(e.Date.ToString("d") == date)
             {
-                Console.WriteLine(e.Title);
-                eventsExistOnDate = true;
+                events.Add(e);
             }
         }
-
-        if (!eventsExistOnDate)
-        {
-            Console.WriteLine("Non esistono eventi nella data scelta.");
-        }
-        
+        return events;
     }
 
-    public void EventsPrint()
+    public static void EventsPrint(List<Event> list)
     {
-        foreach (Event e in Events)
+        foreach (Event e in list)
         {
             Console.WriteLine(e.ToString());
         }
@@ -53,10 +48,16 @@ public class ProgramEvents
         Events.Clear();
     }
 
-    public void ProgramPrint()
+    public string ProgramPrint()
     {
-        Console.WriteLine($"Eventi presenti nel programma: {Title}");
-        EventsPrint();
+        string programPrint = $"Eventi presenti nel programma: {Title} : \n";
+
+        foreach (Event e in Events)
+        {
+            programPrint += " - " + e.ToString() + "\n";
+        }
+
+        return programPrint;
     }
 
 }
