@@ -1,14 +1,16 @@
 ﻿
+Console.Write("Salve! Inserisci il nome dell'evento: ");
+string eventTitle = Console.ReadLine();
 
-Event newEvent = new Event("Rockstar", new DateTime(2025, 3, 1, 7, 0, 0), 50);
+Console.Write("Inserisci data dell'evento (gg/mm/yyyy): ");
+DateTime eventDate = Convert.ToDateTime(Console.ReadLine());
 
-Console.WriteLine(newEvent.Title);
-Console.WriteLine(newEvent.Date);
-Console.WriteLine(newEvent.MaxCapacity);
-Console.WriteLine(newEvent.ToString());
+Console.Write("Inserisci numero di posti totali: ");
+int eventCapacity = Convert.ToInt32(Console.ReadLine());
 
-newEvent.BookSeats(50);
-Console.WriteLine(newEvent.BookedSeats);
+Event newEvent = new Event(eventTitle, eventDate, eventCapacity);
 
-newEvent.CancelSeats(50);
+Console.Write("Quanti posti desideri prenotare? ");
+newEvent.BookSeats(Convert.ToInt32(Console.ReadLine()));
+
 Console.WriteLine(newEvent.BookedSeats);

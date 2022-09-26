@@ -26,6 +26,8 @@ public class Event
             
         }
     }
+
+
     DateTime date;
     public DateTime Date
     {
@@ -51,8 +53,8 @@ public class Event
         }
     }
 
-    int maxCapacity;
 
+    int maxCapacity;
     public int MaxCapacity
     {
         get => maxCapacity;
@@ -76,8 +78,9 @@ public class Event
             }
         }
     }
-    public int bookedSeats;
 
+
+    public int bookedSeats;
     public int BookedSeats
     {
         get => bookedSeats;
@@ -87,6 +90,7 @@ public class Event
             bookedSeats = value;
         }
     }
+
 
     public Event(string title, DateTime date, int maxCapacity)
     {
@@ -108,17 +112,23 @@ public class Event
             {
                 throw new Exception("Non ci sono più posti prenotabili per l'evento");
             }
+            else if (n < 0)
+            {
+                throw new Exception("Non è possibile prenotare meno di 0 posti. (Inserito numero negativo)");
+            }
             else if(n > MaxCapacity)
             {
                 throw new Exception("I posti che si vogliono prenotare superano la capacità massima dell'evento");
             }
-            else if(n > maxCapacity - BookedSeats)
+            else if(n > MaxCapacity - BookedSeats)
             {
                 throw new Exception("Si vogliono prenotare più posti di quanti ce ne siano disponibili");
             }
             else
             {
                 BookedSeats += n;
+
+                BookPrint();
             }
         }
         catch (Exception e)
@@ -126,6 +136,29 @@ public class Event
             Console.WriteLine(e.Message);
         }
         
+    }
+
+    public void BookPrint()
+    {
+        Console.WriteLine($"Numero di posti prenotati = {BookedSeats}");
+        Console.WriteLine($"Numero di posti disponibili = {MaxCapacity - BookedSeats}");
+        Console.WriteLine();
+        Console.Write("Vuoi disdire dei posti (si/no)? ");
+        string userChoice = Console.ReadLine().ToLower();
+        if ((userChoice == "si") || (userChoice == "yes"))
+        {
+            Console.WriteLine();
+            Console.Write("Indica il numero di posti da disdire: ");
+            CancelSeats(Convert.ToInt32(Console.ReadLine()));
+        }
+        else
+        {
+            Console.WriteLine();
+            Console.WriteLine("Ok va bene!");
+            Console.WriteLine();
+            Console.WriteLine($"Numero di posti prenotati = {BookedSeats}");
+            Console.WriteLine($"Numero di posti disponibili = {MaxCapacity - BookedSeats}");
+        }
     }
 
     public void CancelSeats(int n)
@@ -143,6 +176,8 @@ public class Event
             else
             {
                 BookedSeats -= n;
+
+                BookPrint();
             }
         }
         catch (Exception e)
