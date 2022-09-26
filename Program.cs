@@ -52,6 +52,11 @@ for (int i = 1; i <= numberOfEventsToAdd; i++)
                             isPriceValid = false;
                             Console.WriteLine("Il prezzo non è stato inserito correttamente");
                         }
+                        else if(Convert.ToDouble(eventPrice) <= 0)
+                        {
+                            isPriceValid = false;
+                            Console.WriteLine("Il prezzo deve essere maggiore di 0");
+                        }
                     }
 
                     Event newConference = new Conference(eventTitle, eventDate, eventCapacity, conferenceSpeaker, Convert.ToDouble(eventPrice) );

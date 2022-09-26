@@ -20,23 +20,7 @@ public class Conference : Event
 
         }
     }
-    public double price;
-    public double Price
-    {
-        get => price;
-        set
-        {
-            if (value < 0)
-            {
-                throw new Exception("È obbligatorio inserire il prezzo");
-            }
-            else
-            {
-                price = value;
-            }
-
-        }
-    }
+    public double Price { get; set; }
 
     public Conference(string title, DateTime date, int maxCapacity, string speaker, double price) : base(title, date, maxCapacity)
     {
